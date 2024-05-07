@@ -1,0 +1,20 @@
+.resultsList {
+    list-style-type: none;
+    text-align: left;
+}
+
+.resultsList li {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+}
+
+.resultsList li .plusSign {
+    margin-left: auto;
+    color: rgb(182, 7, 121);
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: right;
+    padding-right: 25px;
+}
