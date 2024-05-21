@@ -1,3 +1,8 @@
+.resultsContainer {
+    flex: 1;
+    padding-right: 10px;
+}
+
 .resultsList {
     list-style-type: none;
     text-align: left;

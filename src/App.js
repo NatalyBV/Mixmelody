@@ -1,23 +1,25 @@
 import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar.js';
-import Results from './Results.js';
+import SearchResults from './SearchResults.js';
 import Playlist from './Playlist.js';
+import styles from './App.module.css';
 
 function App() {
+  const [searchResults, setSearchResults] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-       <h1>JAMMMING</h1>
+    <div className={styles.App}>
+      <header className={styles.AppHeader}>
+        <h1>JAMMMING</h1>
       </header>
       <div>
-        <SearchBar/>
-        <div className="container">
-          <div className="resultsContainer">
-            <Results/>
+        <SearchBar setSearchResults={setSearchResults} />
+        <div className={styles.container}>
+          <div className={styles.resultsContainer}>
+            <SearchResults results={searchResults} />
           </div>
-          <div className="playlistContainer">
-            <Playlist/>
+          <div className={styles.playlistContainer}>
+            <Playlist />
           </div>
         </div>
       </div>
