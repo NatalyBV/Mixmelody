@@ -10,7 +10,7 @@ function SearchBar({setSearchResults}) {
 
     const performSearch = async (term) => {
 
-        const token = 'BQBtAD5CgKbGFQ4tEtpLXEQd3DXpKlF0GOq470W1lx5q2vx9lq0nsfcfo8OzAmNVppOh8fFv12g7fwQ72BrS1FrC4HlghcsNUQ2_jDlT85vC8Sy0OnA';
+        const token = 'BQCqYQTsAH4cleNescxfX9YV5EhAHUDAf30dCH2MqZIOKP5SibrC5wDojpLJAC8FdR4Uq-P3ZbPz7jAIRLrs55Qs3ZCX2mz_qv9uKalSvXZ_kHFi7Zw';
         const baseUrl = 'https://api.spotify.com/v1';
         const discoverMusicEndpoint = '/search';
         const requestParams = `?q=${term}&type=track&access_token=${token}`;

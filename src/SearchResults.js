@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './SearchResults.module.css';
 import Playlist from './Playlist.js';
+import Track from './Track.js';
 
 function SearchResults({ results }) {
     return (
@@ -11,17 +12,13 @@ function SearchResults({ results }) {
             {results.length > 0 ? (
                 <div>
                     <ul className={styles.resultsList}>
-                        {console.log(results)}
                         {results.map((track) => (
-                            <li key={track.id}>
-                                <div>
-                                    <h3>{track.album.artists.map(artist => artist.name).join(', ')}</h3>
-                                    <p>{track.name}</p>
-                                </div>
-                                <div className={styles.plusSign}>
-                                    +
-                                </div>
-                            </li>
+                            <Track 
+                                key={track.id}
+                                artist={track.album.artists.map(artist => artist.name).join(', ')} 
+                                album={track.album.name} 
+                                track={track.name}
+                            />
                         ))}
                     </ul>
                 </div>

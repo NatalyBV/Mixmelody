@@ -1,0 +1,19 @@
+.li {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+}
+
+.artist {
+    color: rgb(131, 3, 86);
+}
+
+.plusSign {
+    margin-left: auto;
+    color: rgb(182, 7, 121);
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: right;
+    padding-right: 25px;
+}
