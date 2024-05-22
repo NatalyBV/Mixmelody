@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.playlistContainer {
+.tracklistContainer {
   flex: 1;
   padding-left: 10px;
 }

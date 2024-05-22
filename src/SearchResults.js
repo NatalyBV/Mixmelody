@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styles from './SearchResults.module.css';
-import Playlist from './Playlist.js';
 import Track from './Track.js';
 
 function SearchResults({ results }) {

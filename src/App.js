@@ -1,7 +1,7 @@
-import logo from './logo.svg';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SearchBar from './SearchBar.js';
 import SearchResults from './SearchResults.js';
+import Tracklist from './Tracklist.js';
 import Playlist from './Playlist.js';
 import styles from './App.module.css';
 
@@ -18,8 +18,9 @@ function App() {
           <div className={styles.resultsContainer}>
             <SearchResults results={searchResults} />
           </div>
-          <div className={styles.playlistContainer}>
+          <div className={styles.tracklistContainer}>
             <Playlist />
+            <Tracklist />
           </div>
         </div>
       </div>
