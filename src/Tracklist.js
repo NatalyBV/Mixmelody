@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import styles from './Tracklist.module.css';
 import style from './Track.module.css';
 
-function Tracklist({ tracks }) {
+function Tracklist({ tracks, removeTrackFromPlaylist }) {
+
+    const handleClick = (trackId) => {
+        removeTrackFromPlaylist(trackId);
+    }
+
     return (
         <div>
             <ul className={styles.tracklistList}>
@@ -14,7 +19,7 @@ function Tracklist({ tracks }) {
                             <p>{track.name}</p>
                         </div>
                         <div className={style.minusSign}>
-                            -
+                            <span onClick={() => handleClick(track.id)}>-</span>
                         </div>
                     </li>
                 ))}

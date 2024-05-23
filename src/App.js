@@ -15,6 +15,11 @@ function App() {
     }
   }
 
+  const removeTrackFromPlaylist = (trackIdToRemove) => {
+    setSelectedTracks((selectedTracks) =>
+    selectedTracks.filter(selectedTrack => selectedTrack.id !== trackIdToRemove));
+  }
+  
   return (
     <div className={styles.App}>
       <header className={styles.AppHeader}>
@@ -28,7 +33,7 @@ function App() {
           </div>
           <div className={styles.tracklistContainer}>
             <Playlist />
-            <Tracklist tracks={selectedTracks}/>
+            <Tracklist tracks={selectedTracks} removeTrackFromPlaylist={removeTrackFromPlaylist}/>
           </div>
         </div>
       </div>
