@@ -22,3 +22,25 @@
     background-color: rgb(88, 0, 97);
     width: 100%;
 }
+
+.searchButton {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #410346;
+    color: #daf0ee;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}   
+
+.searchButton:hover {
+    background-color: #ddd;
+    color: #111;
+}
+  
+.searchButton:active {
+    background-color: #bbb;
+    color: #000;
+}

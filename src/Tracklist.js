@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Tracklist.module.css';
 import style from './Track.module.css';
 
-function Tracklist({ tracks, removeTrackFromPlaylist }) {
+function Tracklist({tracks, removeTrackFromPlaylist}) {
 
     const handleClick = (trackId) => {
         removeTrackFromPlaylist(trackId);
@@ -24,9 +24,6 @@ function Tracklist({ tracks, removeTrackFromPlaylist }) {
                     </li>
                 ))}
             </ul>
-            <div>
-                <button type="submit" className={styles.searchButton}>Save to Spotify</button>
-            </div>
         </div>
     );
 }

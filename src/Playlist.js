@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Tracklist from './Tracklist.js';
 import styles from './Playlist.module.css';
 
-function Playlist() {
+function Playlist({tracks, removeTrackFromPlaylist}) {
     const [playlistName, setPlaylistName] = useState('');
 
     const handleRename = (event) => {
@@ -19,6 +20,10 @@ function Playlist() {
                 onChange={handleRename}
             />
             <div className={styles.line}></div>
+            <Tracklist tracks = {tracks} removeTrackFromPlaylist = {removeTrackFromPlaylist} />
+            <div>
+                <button type="submit" className={styles.searchButton}>Save to Spotify</button>
+            </div>
         </div>
     )
 }

@@ -32,8 +32,7 @@ function App() {
             <SearchResults results={searchResults} addTrackToPlaylist={addTrackToPlaylist} />
           </div>
           <div className={styles.tracklistContainer}>
-            <Playlist />
-            <Tracklist tracks={selectedTracks} removeTrackFromPlaylist={removeTrackFromPlaylist}/>
+            <Playlist tracks={selectedTracks} removeTrackFromPlaylist={removeTrackFromPlaylist}/>
           </div>
         </div>
       </div>
