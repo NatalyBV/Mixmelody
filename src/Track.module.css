@@ -8,7 +8,7 @@
     color: rgb(131, 3, 86);
 }
 
-.plusSign {
+.plusSign, .minusSign {
     margin-left: auto;
     color: rgb(182, 7, 121);
     font-weight: bold;

@@ -18,6 +18,7 @@ function Playlist() {
                 placeholder="Playlist name"
                 onChange={handleRename}
             />
+            <div className={styles.line}></div>
         </div>
     )
 }

@@ -1,7 +1,12 @@
 import React from 'react';
 import styles from './Track.module.css';
 
-function Track({ artist, album, track}) {
+function Track({ artist, album, track, addTrackToPlaylist}) {
+
+    const handleCLick = () => {
+        addTrackToPlaylist();
+    }
+
     return (
         <li className={styles.li}>
             <div>
@@ -10,7 +15,7 @@ function Track({ artist, album, track}) {
                 <p>{track}</p>
             </div>
             <div className={styles.plusSign}>
-                +
+                <span onClick={handleCLick}>+</span>
             </div>
         </li>
     );

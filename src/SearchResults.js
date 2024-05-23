@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './SearchResults.module.css';
 import Track from './Track.js';
 
-function SearchResults({ results }) {
+function SearchResults({ results, addTrackToPlaylist }) {
     return (
         <div>
             <div>
@@ -17,6 +17,7 @@ function SearchResults({ results }) {
                                 artist={track.album.artists.map(artist => artist.name).join(', ')} 
                                 album={track.album.name} 
                                 track={track.name}
+                                addTrackToPlaylist={() => addTrackToPlaylist(track)}
                             />
                         ))}
                     </ul>
