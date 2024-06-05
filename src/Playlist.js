@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Tracklist from './Tracklist.js';
 import styles from './Playlist.module.css';
 import {extractAccessTokenFromUrl, getAccessToken, getStoredAccessToken, getUserId, savePlaylist, createPlaylist} from './Helper.js';
 
 function Playlist({ tracks, removeTrackFromPlaylist }) {
     const [playlistName, setPlaylistName] = useState('');
+    const [message, setMessage] = useState('');
 
     const handleRename = (event) => {
         setPlaylistName(event.target.value);
@@ -29,7 +30,19 @@ function Playlist({ tracks, removeTrackFromPlaylist }) {
         for (const track of tracks) {
             removeTrackFromPlaylist(track.id);
         }
+        setMessage(`Your playlist ${playlistName} has been saved!`);
     };
+
+
+    useEffect(() => {
+        if (message) {
+            const timeoutId = setTimeout(() => {
+              setMessage('');
+            }, 3000);
+      
+            return () => clearTimeout(timeoutId);
+          }
+    }, [message]);
 
     return (
         <form onSubmit={handleSave}>
