@@ -44,3 +44,9 @@
     background-color: #bbb;
     color: #000;
 }
+
+.message {
+    color: rgb(223, 106, 10);
+    font-size: 32px;
+    margin-top: 20px;
+  }

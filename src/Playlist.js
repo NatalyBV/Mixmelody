@@ -30,19 +30,19 @@ function Playlist({ tracks, removeTrackFromPlaylist }) {
         for (const track of tracks) {
             removeTrackFromPlaylist(track.id);
         }
-        setMessage(`Your playlist ${playlistName} has been saved!`);
+        setMessage(`Your playlist "${playlistName}" has been saved!`);
     };
 
 
     useEffect(() => {
         if (message) {
-            const timeoutId = setTimeout(() => {
-              setMessage('');
-            }, 3000);
-      
-            return () => clearTimeout(timeoutId);
-          }
-    }, [message]);
+          const timeoutId = setTimeout(() => {
+            setMessage('');
+          }, 3000);
+    
+          return () => clearTimeout(timeoutId);
+        }
+      }, [message]);
 
     return (
         <form onSubmit={handleSave}>
@@ -59,6 +59,7 @@ function Playlist({ tracks, removeTrackFromPlaylist }) {
             <div>
                 <button type="submit" className={styles.saveButton}>Save to Spotify</button>
             </div>
+            {message && <div className={styles.message}>{message}</div>}
         </form>
     )
 }
