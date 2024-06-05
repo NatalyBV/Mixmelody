@@ -5,12 +5,12 @@
 }
 
 .artist {
-    color: rgb(131, 3, 86);
+    color: rgb(205, 142, 7);
 }
 
 .plusSign, .minusSign {
     margin-left: auto;
-    color: rgb(182, 7, 121);
+    color: rgb(34, 32, 33);
     font-weight: bold;
     font-size: 20px;
     cursor: pointer;

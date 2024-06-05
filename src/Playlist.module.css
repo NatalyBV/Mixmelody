@@ -1,5 +1,5 @@
 .playlistName {
-    color: rgb(131, 3, 86);
+    color: rgb(225, 125, 3);
     font-weight: bold;
     font-size: 30px;
     border: none;
@@ -11,7 +11,7 @@
 }
 
 .playlistName::placeholder {
-    color: rgb(235, 137, 219);
+    color: rgb(168, 166, 168);
     font-style:oblique;
     font-size: 30px;
 }
@@ -19,28 +19,28 @@
 .line {
     margin-top: 5px;
     height: 2px;
-    background-color: rgb(88, 0, 97);
+    background-color: rgb(218, 105, 7);
     width: 100%;
 }
 
-.searchButton {
+.saveButton {
     margin: 5px;
     padding: 10px 20px;
     border: none;
     border-radius: 15px;
-    background-color: #410346;
+    background-color: #b34f03;
     color: #daf0ee;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }   
 
-.searchButton:hover {
+.saveButton:hover {
     background-color: #ddd;
     color: #111;
 }
   
-.searchButton:active {
+.saveButton:active {
     background-color: #bbb;
     color: #000;
 }

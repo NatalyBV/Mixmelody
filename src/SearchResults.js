@@ -6,7 +6,7 @@ function SearchResults({ results, addTrackToPlaylist }) {
     return (
         <div>
             <div>
-                <h2>Results</h2>
+                <h2 className={styles.title}>Results</h2>
             </div>
             {results.length > 0 ? (
                 <div>
