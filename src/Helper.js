@@ -99,14 +99,11 @@ async function searchForSongs(token, param) {
                 'Authorization': `Bearer ${token}`
             }
         });
-        
         if (!response.ok) {
             throw new Error('Failed to fetch search results');
         }
-        
         const data = await response.json();
         const tracks = data.tracks.items;
-        
         const filteredTracks = tracks.filter(track =>
             track.name.toLowerCase().includes(param.toLowerCase())
         );
