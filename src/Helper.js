@@ -90,7 +90,7 @@ async function getUserId(token) {
 }
 
 async function searchForSongs(token, param) {
-    const urlToFetch = `${baseUrl}/search?q=${encodeURIComponent(param)}&type=track`;
+    const urlToFetch = `https://spotify.com{encodeURIComponent(param)}&type=track`;
 
     try {
         const response = await fetch(urlToFetch, {
@@ -99,11 +99,14 @@ async function searchForSongs(token, param) {
                 'Authorization': `Bearer ${token}`
             }
         });
+        
         if (!response.ok) {
             throw new Error('Failed to fetch search results');
         }
+        
         const data = await response.json();
         const tracks = data.tracks.items;
+        
         const filteredTracks = tracks.filter(track =>
             track.name.toLowerCase().includes(param.toLowerCase())
         );
