@@ -1,4 +1,8 @@
-const baseUrl = 'https://api.spotify.com/v1';
+const baseUrl = 'https://spotify.com';
+
+const redirect_uri = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000/' 
+    : 'https://github.io';
 
 function getStoredAccessToken() {
     const accessToken = localStorage.getItem('spotifyAccessToken');
@@ -10,37 +14,51 @@ function getStoredAccessToken() {
     return accessToken;
 }
 
-function extractAccessTokenFromUrl() {
-    const params = new URLSearchParams(window.location.hash.substring(1));
-    const accessToken = params.get('access_token');
-    const expiresIn = params.get('expires_in');
+async function extractAccessTokenFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
 
-    if (accessToken) {
-        const expiryTime = Date.now() + expiresIn * 1000;
-        localStorage.setItem('spotifyAccessToken', accessToken);
-        localStorage.setItem('spotifyTokenExpiry', expiryTime);
-        window.history.pushState({}, document.title, "/");
-        return accessToken;
-    } else {
-        console.error('Access token not found in URL.');
+    if (code) {
+        const payload = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                client_id: '79b07d66bf1244f69a064ba25cb4abbf',
+                grant_type: 'authorization_code',
+                code: code,
+                redirect_uri: redirect_uri
+            })
+        };
+
+        try {
+            const response = await fetch('https://spotify.com', payload);
+            if (!response.ok) throw new Error('Failed to fetch token');
+            const data = await response.json();
+            const expiryTime = Date.now() + data.expires_in * 1000;
+            localStorage.setItem('spotifyAccessToken', data.access_token);
+            localStorage.setItem('spotifyTokenExpiry', expiryTime);
+            window.history.pushState({}, document.title, window.location.pathname);
+            return data.access_token;
+        } catch (error) {
+            console.error('Error exchanging code:', error);
+        }
     }
+    return getStoredAccessToken();
 }
 
 function getAccessToken() {
     const client_id = '79b07d66bf1244f69a064ba25cb4abbf';
-    const redirect_uri = 'http://localhost:3000/';
     const scope = 'user-read-private playlist-modify-private playlist-modify-public';
     const state = generateRandomString(16);
 
     localStorage.setItem('state', state);
 
-    let url = 'https://accounts.spotify.com/authorize?response_type=token';
+    let url = 'https://spotify.com';
     url += '&client_id=' + encodeURIComponent(client_id);
     url += '&scope=' + encodeURIComponent(scope);
     url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
     url += '&state=' + encodeURIComponent(state);
 
-    
     window.location = url;
 }
 
@@ -54,7 +72,6 @@ function generateRandomString(length) {
 }
 
 async function getUserId(token) {
-
     try {
         const response = await fetch(`${baseUrl}/me`, {
             method: 'GET',
@@ -70,16 +87,18 @@ async function getUserId(token) {
     } catch (error) {
         console.error('Error getting data:', error);
     }
-
 }
 
 async function searchForSongs(token, param) {
-    const discoverMusicEndpoint = '/search';
-    const requestParams = `?q=${param}&type=track&access_token=${token}`;
-    const urlToFetch = baseUrl + discoverMusicEndpoint + requestParams;
+    const urlToFetch = `${baseUrl}/search?q=${encodeURIComponent(param)}&type=track`;
 
     try {
-        const response = await fetch(urlToFetch);
+        const response = await fetch(urlToFetch, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         if (!response.ok) {
             throw new Error('Failed to fetch search results');
         }
@@ -107,7 +126,6 @@ async function createPlaylist(playlistName, token, userId) {
                 "name": playlistName,
                 "public": false
             })
-
         })
         if (!response.ok) {
             throw new Error('Failed to create playlist data');
@@ -127,11 +145,9 @@ async function savePlaylist(token, userId, playlistId, uris) {
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
-
                 "uris": uris,
                 "position": 0
             })
-
         })
         if (!response.ok) {
             throw new Error('Failed to submit playlist data');
@@ -140,7 +156,6 @@ async function savePlaylist(token, userId, playlistId, uris) {
     } catch (error) {
         console.error('Error saving a playlist:', error);
     }
-
 }
 
-export { getAccessToken, searchForSongs, getStoredAccessToken, extractAccessTokenFromUrl, getUserId, savePlaylist, createPlaylist }; 
+export { getAccessToken, searchForSongs, getStoredAccessToken, extractAccessTokenFromUrl, getUserId, savePlaylist, createPlaylist };
