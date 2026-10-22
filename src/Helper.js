@@ -90,7 +90,7 @@ async function getUserId(token) {
 }
 
 async function searchForSongs(token, param) {
-    const urlToFetch = `https://spotify.com{encodeURIComponent(param)}&type=track`;
+    const urlToFetch = `https://spotify.com/search?q=${encodeURIComponent(param)}&type=track`;
 
     try {
         const response = await fetch(urlToFetch, {
