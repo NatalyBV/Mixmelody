@@ -90,13 +90,14 @@ async function getUserId(token) {
 }
 
 async function searchForSongs(token, param) {
-    const urlToFetch = `https://spotify.com/search?q=${encodeURIComponent(param)}&type=track`;
+    // Переконайтеся, що тут написано саме ://spotify.com з версією v1 і знаком питання!
+    const urlToFetch = `https://://spotify.com/v1/search?q=${encodeURIComponent(param)}&type=track`;
 
     try {
         const response = await fetch(urlToFetch, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}` // Токен передається суворо в Headers
             }
         });
         if (!response.ok) {
